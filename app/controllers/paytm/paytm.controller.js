@@ -25,7 +25,18 @@ module.exports = {
     },
 
     response: (req, res) => {
-        console.log(req.body);
-        res.render("paytm/response");
+        // console.log(req.body);
+        if(req.body.RESPCODE === "01") {
+            res.render("paytm/response", {
+                status: true,
+                result: req.body
+            });
+        } else {
+            res.render("paytm/response", {
+                status: false,
+                result: req.body
+            });
+        }
+        
     }
 };
